@@ -1,4 +1,4 @@
-;;; org-todo-sync-issue.el --- Sync org-todo and github issue
+;;; org-todo-sync-issue.el --- Sync org-todo and github issue  -*- lexical-binding: t -*-
 ;; Author: grugrut <grugruglut+github@gmail.com>
 ;; URL:
 ;; Version: 1.00
@@ -20,7 +20,22 @@
 
 ;;; Code:
 
+(require 'org)
 
+(defun otsi--sync-to-github ()
+  "."
+  (let ((properties (org-entry-properties)))
+    ;; ひとつずつgithubに対して同期をとる
+    (princ (assoc "ITEM" properties))
+    )
+  )
+
+(defun otsi-sync-to-github ()
+  "."
+  (interactive)
+  ;; バッファのTODO一覧を取得する
+  (org-map-entries (otsi--sync-to-github) "TODO=\"TODO\"")
+  )
 
 (provide 'org-todo-sync-issue)
 
